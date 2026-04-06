@@ -1,6 +1,7 @@
 #pragma once
 #include "clsPerson.h"
 #include "clsString.h"
+#include "clsDate.h"
 #include <fstream>
 #include <iostream>      
 #include <string>
@@ -91,6 +92,29 @@ private:
 		_vClients.push_back(*this); // add the current client object to the vector of clients
 		_saveClientsDataToFile(_vClients);
 	}
+	// helper For transfer logs
+
+	static string _convertTransferDataToLine(clsUser &currentUser,clsBankClient &sender, clsBankClient& reciever,double amount ,string separator = "#//#") {
+		string transferData = "";
+
+		clsDate d;
+		transferData += to_string(d.getDay()) + "/" +
+			to_string(d.getMonth()) + "/" +
+			to_string(d.getYear()) + "__" +
+			to_string(d.getHours()) + ":" +
+			to_string(d.getMinutes()) + ":" +
+			to_string(d.getSeconds()) + separator;
+
+		transferData += sender.getAccountNumber() + separator;
+		transferData += reciever.getAccountNumber() + separator;
+		transferData += to_string(amount) + separator;
+		transferData += to_string(sender.getAccountBalance()) + separator;
+		transferData += to_string(reciever.getAccountBalance()) + separator;
+		transferData += currentUser.getUserName();
+		return transferData;
+	}
+
+
 	//======================================================================================
 public:
 	//constructors
@@ -100,6 +124,20 @@ public:
 		clsPerson(firstName, lastName, email, phone),
 		_accountNumber(accountNumber), _pinCode(pinCode), _accountBalance(accountBalance), _mode(mode) {
 	}
+
+	//transfer struct
+
+	struct stTransfer {
+		string date;
+		string senderAccountNumber;
+		string recieverAccountNumber;
+		double amount;
+		double recieverBalance;
+		double senderBalance;
+		string user;
+	};
+
+
 
 	//function to check if the client object is empty or not
 	bool isEmpty() {
@@ -251,6 +289,62 @@ public:
 		_saveClientsDataToFile(vClients);
 		setAccountBalance(getAccountBalance() - amount); // update the account balance of the current client object to reflect the change in the account balance after withdrawing the amount
 	}
+
+
+	//Helpers For Transfer Logs 
+	static void loadTransferDataToFile(clsUser& currentUser, clsBankClient& sender, clsBankClient& reciever, double amount)
+	{
+		fstream myFile;
+		myFile.open("data/TransferHistory.txt", ios::app);
+		if (myFile.is_open())
+		{
+			myFile << _convertTransferDataToLine(currentUser, sender,reciever, amount)<< "\n";
+			myFile.close();
+		}
+	}
+
+	static  stTransfer convertTransferLinetoSt(string line, string seperator = "#//#") { 
+		vector<string> vTransferData;
+		stTransfer logs;
+
+		vTransferData = clsString::split(line, seperator);
+
+		logs.date = vTransferData[0];
+		logs.senderAccountNumber = vTransferData[1];
+		logs.recieverAccountNumber = vTransferData[2];
+		logs.amount = stod(vTransferData[3]);
+		logs.senderBalance = stod(vTransferData[4]);
+		logs.recieverBalance = stod(vTransferData[5]);
+		logs.user = vTransferData[6];
+
+		return logs;
+	}
+
+	static vector<stTransfer> loadTransfersHistory() {
+		vector<stTransfer> vTransfers;
+
+		fstream myFile;
+		myFile.open("data/TransferHistory.txt", ios::in);//read Mode
+
+		if (myFile.is_open())
+		{
+			string line;
+			while (getline(myFile, line))
+			{
+				if (line.empty())
+					break;
+				stTransfer transfer = convertTransferLinetoSt(line);
+				vTransfers.push_back(transfer);
+			}
+			myFile.close();
+		}
+		return vTransfers;
+	}
+
+	static vector<stTransfer> getTransfersList() {
+		return loadTransfersHistory();
+	}
+
 
 };
 

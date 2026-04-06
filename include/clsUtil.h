@@ -126,22 +126,29 @@ public:
 
 	// This function is used to decrypt a string that was encrypted using the Caesar cipher method with a given encryption key
 	static void encryptText(string& str, size_t encryptionKey) {
-		while (encryptionKey <= 0) {
+		while (encryptionKey == 0) {
 			cout << "Encryption key must be greater than 0: ";
 			cin >> encryptionKey;
 		}
 
 		for (char& c : str) {
 			if (islower(c))
-				c = 'a' + (c - 'a' + encryptionKey) % 26; 
+				c = 'a' + (c - 'a' + encryptionKey) % 26;
 			else if (isupper(c))
-				c = 'A' + (c - 'A' + encryptionKey) % 26;  
+				c = 'A' + (c - 'A' + encryptionKey) % 26; 
+			else if (isdigit(c))
+				c = '0' + (c - '0' + encryptionKey) % 10;
 		}
 	}
+	//example
+	//'x' - 'a' = 23
+	//	23 + 3 = 26
+	//	26 % 26 = 0
+	//	'a' + 0 = 'a'
 
 	// This function is used to decrypt a string that was encrypted using the Caesar cipher method with a given encryption key
 	static void decryptText(string& str, size_t encryptionKey) {
-		while (encryptionKey <= 0) {
+		while (encryptionKey == 0) {
 			cout << "Encryption key must be greater than 0: ";
 			cin >> encryptionKey;
 		}
@@ -150,6 +157,8 @@ public:
 				c = 'a' + (c - 'a' - encryptionKey + 26) % 26; 
 			else if (isupper(c))
 				c = 'A' + (c - 'A' - encryptionKey + 26) % 26;  
+			else if (isdigit(c))
+				c = '0' + (c - '0' + encryptionKey + 10) % 10;
 		}
 	}
 	// This function is used to convert a number to its English words representation

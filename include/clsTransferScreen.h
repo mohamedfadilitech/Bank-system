@@ -1,6 +1,7 @@
 #pragma once
 #include "clsScreen.h"
 #include "clsBankClient.h"
+#include "Global.h"
 #include "clsInputValidate.h"
 
 class clsTransferScreen : protected clsScreen
@@ -19,7 +20,6 @@ private:
     static string _readAccountNumber(const string str)
     {
         string accountNumber = "";
-
         do
         {
             cout << str ;
@@ -38,9 +38,6 @@ public :
     //Accout to Transform from 
     static clsBankClient findSender()
     {
-        [[maybe_unused]] char confirmation;
-        //_drawScreenHeader("\t   Withdraw Screen");
-
         string senderAccountNumber = _readAccountNumber("\nPlease Enter Account Number to Transfer From: ");
 
         while (!clsBankClient::isClientExist(senderAccountNumber))
@@ -58,9 +55,7 @@ public :
     //find reciever
 
     static clsBankClient findReciever() {
-        [[maybe_unused]] char confirmation;
-       
-
+     
         string recieverAccountNumber = _readAccountNumber("\n Please Enter Account Number to Transfer To: ");
 
         while (!clsBankClient::isClientExist(recieverAccountNumber))
@@ -89,7 +84,7 @@ public :
             reciever = findReciever();
         }
         double amount = 0;
-        amount = clsInputValidate::readDoubleNumberBetween("\nPlease enter withdraw amount: ", 0.01, sender.getAccountBalance());
+        amount = clsInputValidate::readDoubleNumberBetween("\nPlease enter the transfer amount : ", 0.01, sender.getAccountBalance());
 
         do {
             confirmation = clsInputValidate::readChar("Do Wanna Really Preform This Operation. Y | N : ");
@@ -99,6 +94,7 @@ public :
         {
             sender.withdraw(amount);
             reciever.deposit(amount);
+            clsBankClient::loadTransferDataToFile(currentUser, sender, reciever, amount);
             cout << "\nOperation was done successfully.\n";
             _print(sender);
             _print(reciever);

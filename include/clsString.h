@@ -110,7 +110,7 @@ public:
     }
 
     string lowerCase() {
-        return lowerCase(GetValue());
+    return lowerCase(GetValue());
     }
     //======================================================================================
     // upperCase function with upperCase function overloading
@@ -123,7 +123,7 @@ public:
     }
 
     string upperCase() {
-        return upperCase(GetValue());
+      return upperCase(GetValue());
     }
     //======================================================================================
     // upperCaseFirstletter function with upperCaseFirstletter function overloading

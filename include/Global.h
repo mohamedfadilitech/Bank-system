@@ -6,6 +6,3 @@ extern clsUser currentUser; // Declare the global variable to store the currentl
 
 
 
-
-
-

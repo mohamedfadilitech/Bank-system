@@ -9,7 +9,7 @@ class clsDeleteUserScreen : protected clsScreen
 {
 
 private:
-    static void _printUser(clsUser user)
+    static void _printUser(clsUser &user)
     {
         cout << "\nUser Card:";
         cout << "\n___________________";
@@ -36,6 +36,10 @@ public:
         while (!clsUser::isUserExist(userName))
         {
             userName = clsInputValidate::readString("\nUser is not found, choose another one: ");
+        }
+        while (userName == currentUser.getUserName())
+        {
+            userName = clsInputValidate::readString("\nYou Cannot Delete The Current User Of The System: ");
         }
 
         clsUser user = clsUser::find(userName);

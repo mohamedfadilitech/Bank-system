@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -15,66 +15,73 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\bankSystemOOP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\clsLoginScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\clsDate.h">
+    <ClInclude Include="include\clsAddNewClientScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsInputValidate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsPerson.h">
+    <ClInclude Include="include\clsAddNewUserScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\clsBankClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsMainScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\clsClientListScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsAddNewClientScreen.h">
+    <ClInclude Include="include\clsDate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\clsDeleteClientScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsUpdateClientScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsFindClientScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsTransactionsScreen.h">
+    <ClInclude Include="include\clsDeleteUserScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\clsDepositScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsWithdrawScreen.h">
+    <ClInclude Include="include\clsFindClientScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsFindUserScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsInputValidate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsLoginHistoryScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsLoginScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsMainScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsManageUsers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsPerson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\clsTotalBalancesScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsManageUsers.h">
+    <ClInclude Include="include\clsTransactionsScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsTransferScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsUpdateClientScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsUpdateUserScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\clsUser.h">
@@ -83,29 +90,43 @@
     <ClInclude Include="include\clsUsersListScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsAddNewUserScreen.h">
+    <ClInclude Include="include\clsUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsDeleteUserScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsUpdateUserScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsFindUserScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\clsLoginScreen.h">
+    <ClInclude Include="include\clsWithdrawScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsLoginHistoryScreen.h">
+    <ClInclude Include="include\clsTransferLogsScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\clsTransferScreen.h">
+    <ClInclude Include="include\clsCurrency.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\clsCurrencyExchangeScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsCurrenciesListScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsFindCurrencyScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsUpdateCurrencyRateScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\clsCurrencyCalculatorScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\bankSystemOOP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\clsLoginScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

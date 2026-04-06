@@ -8,8 +8,10 @@ class clsListUsersScreen : protected clsScreen
 {
 
 private:
-    static void _printUserRecordLine(clsUser user)
+    static void _printUserRecordLine(clsUser &user)
     {
+        //string encryptedpassWd = user.getPassword();
+        //clsUtil::encryptText(encryptedpassWd, 5);
         cout << setw(8) << left << "" << "| " << setw(12) << left << user.getUserName();
 		cout << "| " << setw(25) << left << user.getFirstName() + " " + user.getLastName();
         cout << "| " << setw(12) << left << user.getPhone();

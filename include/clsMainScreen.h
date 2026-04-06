@@ -11,6 +11,7 @@
 #include "clsManageUsers.h"
 #include "clsLoginScreen.h"
 #include "clsLoginHistoryScreen.h"
+#include "clsCurrencyExchangeScreen.h"
 #include "Global.h"
 #include <iomanip>
 
@@ -21,7 +22,7 @@ private:
     enum enMainMenuOptions {
         eListClients = 1, eAddNewClient = 2, eDeleteClient = 3,
         eUpdateClient = 4, eFindClient = 5, eShowTransactionsMenu = 6, 
-        eManageUsers = 7, eUsersLoginHistory = 8, eExit = 9
+        eManageUsers = 7, eUsersLoginHistory = 8, eCurrencyExchange = 9 , eExit = 10
     };
     static short _readMainMenuOption()
     {
@@ -76,6 +77,9 @@ private:
         clsLoginHistoryScreen::showLogList();
     }
 
+    static void _showCurrencyExchangeMenu() {
+        clsCurrencyExchangeScreen::showCurrenciesMenu();
+    }
     static void _logOut()
     {
 		currentUser = clsUser::getEmptyUserObject(); // we will set the current user to empty user object to clear the current user data after logout, and then we will show the login screen again.
@@ -132,7 +136,11 @@ private:
             system("cls");
             _showLoginHistoryMenu();
             _goBackToMainMenu();
-
+            break;
+        case enMainMenuOptions::eCurrencyExchange:
+            _showCurrencyExchangeMenu();
+            _goBackToMainMenu();
+            break;
         case enMainMenuOptions::eExit:
             system("cls");
             _logOut();
@@ -158,7 +166,8 @@ public:
         cout << setw(37) << left << "" << "\t[6] Transactions.\n";
         cout << setw(37) << left << "" << "\t[7] Manage Users.\n";
         cout << setw(37) << left << "" << "\t[8] Users Login History.\n";
-        cout << setw(37) << left << "" << "\t[9] Logout.\n";
+        cout << setw(37) << left << "" << "\t[9] Currency Exchange.\n";
+        cout << setw(37) << left << "" << "\t[10] Logout.\n";
         cout << setw(37) << left << "" << "===========================================\n";
 
         _performMainMenuOption((enMainMenuOptions)_readMainMenuOption());

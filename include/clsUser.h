@@ -4,6 +4,8 @@
 #include "clsPerson.h"
 #include "clsString.h"
 #include "clsDate.h"
+#include "clsUtil.h"
+#include <string>
 #include <vector>
 #include <fstream>
 
@@ -34,28 +36,33 @@ private:
     }
 
 
-    static string _converUserObjectToLine(clsUser user, string seperator = "#//#")
+    static string _converUserObjectToLine(clsUser &user, string seperator = "#//#")
     {
-
         string userRecord = "";
+        string encryptedpassWd = user.getPassword();
+        clsUtil::encryptText(encryptedpassWd, 5);
+
         userRecord += user.getFirstName() + seperator;
         userRecord += user.getLastName() + seperator;
         userRecord += user.getEmail() + seperator;
         userRecord += user.getPhone() + seperator;
         userRecord += user.getUserName() + seperator;
-        userRecord += user.getPassword() + seperator;
+        userRecord += encryptedpassWd + seperator;
         userRecord += to_string(user.getPermissions());
 
         return userRecord;
-
     }
   
-    static string _convertUserLoginDataToLine(clsUser currentUser, string separator = "#//#") {
+    static string _convertUserLoginDataToLine(clsUser &currentUser, string separator = "#//#") {
         string loginData = "";
+        clsDate d;
+        loginData += to_string(d.getDay()) + "/" +
+            to_string(d.getMonth()) + "/" +
+            to_string(d.getYear()) + "__" +
+            to_string(d.getHours()) + ":" +
+            to_string(d.getMinutes()) + ":" +
+            to_string(d.getSeconds()) + separator;
 
-        loginData += to_string(clsDate().getDay()) + "/" + to_string(clsDate().getMonth())
-            + "/" + to_string(clsDate().getYear()) + "__" + to_string(clsDate().getHours())
-            + ":" + to_string(clsDate().getMinutes()) + ":" + to_string(clsDate().getSeconds()) + separator;
         loginData += currentUser.getUserName() + separator;
         loginData += to_string(currentUser.getPermissions());
         return loginData;
@@ -71,6 +78,7 @@ private:
         if (myFile.is_open())
         {
             string line;
+            
             while (getline(myFile, line))
             {
                 clsUser user = _convertLinetoUserObject(line);
@@ -137,7 +145,7 @@ private:
 
         if (myFile.is_open())
         {
-            myFile << stDataLine << endl;
+            myFile << stDataLine << "\n";
             myFile.close();
         }
 
@@ -242,8 +250,12 @@ public:
             string line;
             while (getline(myFile, line))
             {
+                if (line.empty())
+                    break;
                 clsUser user = _convertLinetoUserObject(line);
-                if (user.getUserName() == userName && user.getPassword() == password)
+                string decryptedPasswd = user.getPassword();
+                clsUtil::decryptText(decryptedPasswd, 5);
+                if (user.getUserName() == userName && decryptedPasswd== password)
                 {
                     myFile.close();
                     return user;
@@ -332,7 +344,8 @@ public:
         return (this->getPermissions() & permission) == permission; //we will check if the user has the required permission by using bitwise AND operator to check if the required permission bit is set in the user's permissions.
 	}
 
-    static void loadLoginDataToFile(clsUser currentUser)
+    // helpers for history logs 
+    static void loadLoginDataToFile(clsUser &currentUser)
     {
         fstream myFile;
         myFile.open("data/loginHistory.txt", ios::app);
@@ -368,6 +381,8 @@ public:
             string line;
             while (getline(myFile, line))
             {
+                if (line.empty())
+                    continue;
                 stLoginHistory log = convertLinetoSt(line);
                 vLogs.push_back(log);
             }
@@ -380,5 +395,5 @@ public:
     static vector<stLoginHistory> getLogsList() {
         return loadLoginsHistory();
     }
-
+    
 };

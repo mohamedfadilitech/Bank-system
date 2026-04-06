@@ -19,7 +19,6 @@ public:
     {
         if (!checkAccessRights(clsUser::PLogHistory))
             return ;
-        _drawScreenHeader("\t  Users Log History");
         vector <clsUser::stLoginHistory> vLogs = clsUser::getLogsList();
 
         string title = "\t  Users History Logs";

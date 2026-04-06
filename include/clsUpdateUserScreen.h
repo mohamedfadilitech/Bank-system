@@ -20,8 +20,10 @@ private:
         user.setPermissions(_readPermissionsToSet());
     }
 
-    static void _printUser(clsUser user)
+    static void _printUser(clsUser &user)
     {
+        //string encryptedPasswd = user.getPassword();
+        //clsUtil::encryptText(encryptedPasswd, 5);
         cout << "\nUser Card:";
         cout << "\n___________________";
         cout << "\nFirstName   : " << user.getFirstName();
