@@ -43,6 +43,7 @@
 
 ### 🔐 Authentication & Sessions
 - Login screen with username & password verification
+- User passwords are stored in encrypted form in `Users.txt` (not plain text)
 - Session header displays the **logged-in user** and **current date** on every screen
 - Logout returns to login screen — no restart required
 - Invalid credentials keep prompting until a valid login is entered
@@ -121,10 +122,10 @@ ahmed#//#pass123#//#19
 A900#//#7827#//#Mohamed Fadili#//#0612345678#//#12000.000000
 ```
 
-**User record — `Users.txt`**
+**User record — `Users.txt` (password encrypted)**
 ```
-Admin#//#1234#//#-1
-ahmed#//#pass123#//#19
+Admin#//#<encrypted_password>#//#-1
+ahmed#//#<encrypted_password>#//#19
 ```
 
 **Transfer log — `TransferLog.txt`**
@@ -150,42 +151,50 @@ BankSystem/
 │   ├── bankSystemOOP.cpp                 # Entry point — login flow and main menu dispatch
 │   └── clsLoginScreen.cpp                # Login screen implementation
 │
-├── include/                              # .h header files — all class definitions
-│   ├── Global.h                          # Global constants and shared enums
-│   ├── clsPerson.h                       # Base person class
-│   ├── clsBankClient.h                   # BankClient class (extends clsPerson)
-│   ├── clsUser.h                         # User class with permissions
-│   ├── clsCurrency.h                     # Currency class and exchange logic
-│   ├── clsDate.h                         # Date utility class
-│   ├── clsString.h                       # String utility class
-│   ├── clsUtil.h                         # General utilities
-│   ├── clsInputValidate.h                # Input validation helpers
-│   ├── clsScreen.h                       # Base screen class (header drawing)
-│   ├── clsMainScreen.h                   # Main menu display and routing
-│   ├── clsLoginScreen.h                  # Login screen declaration
-│   ├── clsLoginHistoryScreen.h           # Login history log screen
-│   ├── clsClientListScreen.h             # Client list display
-│   ├── clsAddNewClientScreen.h           # Add new client
-│   ├── clsDeleteClientScreen.h           # Delete client
-│   ├── clsUpdateClientScreen.h           # Update client
-│   ├── clsFindClientScreen.h             # Find client
-│   ├── clsTransactionsScreen.h           # Transactions menu
-│   ├── clsDepositScreen.h                # Deposit logic
-│   ├── clsWithdrawScreen.h               # Withdraw with overdraft check
-│   ├── clsTotalBalancesScreen.h          # Total balances view
-│   ├── clsTransferScreen.h               # Transfer between accounts
-│   ├── clsTransferLogsScreen.h           # Transfer history log
-│   ├── clsManageUsers.h                  # Manage users menu
-│   ├── clsUsersListScreen.h              # List all users
-│   ├── clsAddNewUserScreen.h             # Add new user
-│   ├── clsDeleteUserScreen.h             # Delete user
-│   ├── clsUpdateUserScreen.h             # Update user
-│   ├── clsFindUserScreen.h               # Find user
-│   ├── clsCurrenciesListScreen.h         # List all currencies
-│   ├── clsFindCurrencyScreen.h           # Find currency by code
-│   ├── clsUpdateCurrencyRateScreen.h     # Update exchange rate
-│   ├── clsCurrencyExchangeScreen.h       # Currency exchange menu
-│   └── clsCurrencyCalculatorScreen.h     # Currency calculator
+├── include/                              # .h header files organized by category
+│   ├── core/                             # Shared utilities, globals, and base screen
+│   │   ├── Global.h
+│   │   ├── clsDate.h
+│   │   ├── clsInputValidate.h
+│   │   ├── clsScreen.h
+│   │   ├── clsString.h
+│   │   └── clsUtil.h
+│   ├── models/                           # Domain entities
+│   │   ├── clsPerson.h
+│   │   ├── clsBankClient.h
+│   │   ├── clsUser.h
+│   │   └── clsCurrency.h
+│   └── screens/                          # UI screens grouped by feature
+│       ├── main/
+│       │   ├── clsMainScreen.h
+│       │   ├── clsLoginScreen.h
+│       │   └── clsLoginHistoryScreen.h
+│       ├── clients/
+│       │   ├── clsClientListScreen.h
+│       │   ├── clsAddNewClientScreen.h
+│       │   ├── clsDeleteClientScreen.h
+│       │   ├── clsUpdateClientScreen.h
+│       │   └── clsFindClientScreen.h
+│       ├── users/
+│       │   ├── clsManageUsers.h
+│       │   ├── clsUsersListScreen.h
+│       │   ├── clsAddNewUserScreen.h
+│       │   ├── clsDeleteUserScreen.h
+│       │   ├── clsUpdateUserScreen.h
+│       │   └── clsFindUserScreen.h
+│       ├── transactions/
+│       │   ├── clsTransactionsScreen.h
+│       │   ├── clsDepositScreen.h
+│       │   ├── clsWithdrawScreen.h
+│       │   ├── clsTotalBalancesScreen.h
+│       │   ├── clsTransferScreen.h
+│       │   └── clsTransferLogsScreen.h
+│       └── currency/
+│           ├── clsCurrenciesListScreen.h
+│           ├── clsFindCurrencyScreen.h
+│           ├── clsUpdateCurrencyRateScreen.h
+│           ├── clsCurrencyExchangeScreen.h
+│           └── clsCurrencyCalculatorScreen.h
 │
 ├── data/                                 # Persistent flat-file database
 │   ├── Clients.txt                       # All bank client records

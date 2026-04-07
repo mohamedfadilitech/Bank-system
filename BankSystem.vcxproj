@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -85,6 +86,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -100,6 +102,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -113,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,41 +131,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\clsAddNewClientScreen.h" />
-    <ClInclude Include="include\clsAddNewUserScreen.h" />
-    <ClInclude Include="include\clsBankClient.h" />
-    <ClInclude Include="include\clsClientListScreen.h" />
-    <ClInclude Include="include\clsCurrenciesListScreen.h" />
-    <ClInclude Include="include\clsCurrency.h" />
-    <ClInclude Include="include\clsCurrencyCalculatorScreen.h" />
-    <ClInclude Include="include\clsCurrencyExchangeScreen.h" />
-    <ClInclude Include="include\clsDate.h" />
-    <ClInclude Include="include\clsDeleteClientScreen.h" />
-    <ClInclude Include="include\clsDeleteUserScreen.h" />
-    <ClInclude Include="include\clsDepositScreen.h" />
-    <ClInclude Include="include\clsFindClientScreen.h" />
-    <ClInclude Include="include\clsFindCurrencyScreen.h" />
-    <ClInclude Include="include\clsFindUserScreen.h" />
-    <ClInclude Include="include\clsInputValidate.h" />
-    <ClInclude Include="include\clsLoginHistoryScreen.h" />
-    <ClInclude Include="include\clsLoginScreen.h" />
-    <ClInclude Include="include\clsMainScreen.h" />
-    <ClInclude Include="include\clsManageUsers.h" />
-    <ClInclude Include="include\clsPerson.h" />
-    <ClInclude Include="include\clsScreen.h" />
-    <ClInclude Include="include\clsString.h" />
-    <ClInclude Include="include\clsTotalBalancesScreen.h" />
-    <ClInclude Include="include\clsTransactionsScreen.h" />
-    <ClInclude Include="include\clsTransferLogsScreen.h" />
-    <ClInclude Include="include\clsTransferScreen.h" />
-    <ClInclude Include="include\clsUpdateClientScreen.h" />
-    <ClInclude Include="include\clsUpdateCurrencyRateScreen.h" />
-    <ClInclude Include="include\clsUpdateUserScreen.h" />
-    <ClInclude Include="include\clsUser.h" />
-    <ClInclude Include="include\clsUsersListScreen.h" />
-    <ClInclude Include="include\clsUtil.h" />
-    <ClInclude Include="include\clsWithdrawScreen.h" />
-    <ClInclude Include="include\Global.h" />
+    <ClInclude Include="include\screens\clients\clsAddNewClientScreen.h" />
+    <ClInclude Include="include\screens\users\clsAddNewUserScreen.h" />
+    <ClInclude Include="include\models\clsBankClient.h" />
+    <ClInclude Include="include\screens\clients\clsClientListScreen.h" />
+    <ClInclude Include="include\screens\currency\clsCurrenciesListScreen.h" />
+    <ClInclude Include="include\models\clsCurrency.h" />
+    <ClInclude Include="include\screens\currency\clsCurrencyCalculatorScreen.h" />
+    <ClInclude Include="include\screens\currency\clsCurrencyExchangeScreen.h" />
+    <ClInclude Include="include\core\clsDate.h" />
+    <ClInclude Include="include\screens\clients\clsDeleteClientScreen.h" />
+    <ClInclude Include="include\screens\users\clsDeleteUserScreen.h" />
+    <ClInclude Include="include\screens\transactions\clsDepositScreen.h" />
+    <ClInclude Include="include\screens\clients\clsFindClientScreen.h" />
+    <ClInclude Include="include\screens\currency\clsFindCurrencyScreen.h" />
+    <ClInclude Include="include\screens\users\clsFindUserScreen.h" />
+    <ClInclude Include="include\core\clsInputValidate.h" />
+    <ClInclude Include="include\screens\main\clsLoginHistoryScreen.h" />
+    <ClInclude Include="include\screens\main\clsLoginScreen.h" />
+    <ClInclude Include="include\screens\main\clsMainScreen.h" />
+    <ClInclude Include="include\screens\users\clsManageUsers.h" />
+    <ClInclude Include="include\models\clsPerson.h" />
+    <ClInclude Include="include\core\clsScreen.h" />
+    <ClInclude Include="include\core\clsString.h" />
+    <ClInclude Include="include\screens\transactions\clsTotalBalancesScreen.h" />
+    <ClInclude Include="include\screens\transactions\clsTransactionsScreen.h" />
+    <ClInclude Include="include\screens\transactions\clsTransferLogsScreen.h" />
+    <ClInclude Include="include\screens\transactions\clsTransferScreen.h" />
+    <ClInclude Include="include\screens\clients\clsUpdateClientScreen.h" />
+    <ClInclude Include="include\screens\currency\clsUpdateCurrencyRateScreen.h" />
+    <ClInclude Include="include\screens\users\clsUpdateUserScreen.h" />
+    <ClInclude Include="include\models\clsUser.h" />
+    <ClInclude Include="include\screens\users\clsUsersListScreen.h" />
+    <ClInclude Include="include\core\clsUtil.h" />
+    <ClInclude Include="include\screens\transactions\clsWithdrawScreen.h" />
+    <ClInclude Include="include\core\Global.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\bankSystemOOP.cpp" />

@@ -1,5 +1,5 @@
-#include "../include/clsLoginScreen.h"
-#include "../include/clsMainScreen.h"
+#include "../include/screens/main/clsLoginScreen.h"
+#include "../include/screens/main/clsMainScreen.h"
 
 bool clsLoginScreen::_login()
 {

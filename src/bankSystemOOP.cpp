@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../include/clsLoginScreen.h"
-#include "../include/clsUser.h"
-#include "../include/Global.h"
+#include "../include/screens/main/clsLoginScreen.h"
+#include "../include/models/clsUser.h"
+#include "../include/core/Global.h"
 
 
 using namespace std;
